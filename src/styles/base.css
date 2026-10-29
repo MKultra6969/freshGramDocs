@@ -1,0 +1,260 @@
+/* Токены DESIGN.md (разделы 3 и 3.1) и базовые правила. Компоненты используют только эти переменные. */
+
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --gutter: var(--space-4);
+  --gutter-wide: 40px;
+
+  --radius-marker: 2px;
+  --radius-inline: 4px;
+  --radius-control: 6px;
+  --radius-block: 10px;
+  --radius-pill: 999px;
+
+  --topbar-height: 56px;
+  --sidebar-width: 272px;
+  --toc-width: 200px;
+  --control-size: 40px;
+  --hit-extend: 2px;
+  --hit-size: calc(var(--control-size) + 2 * var(--hit-extend));
+  --stripe-width: 3px;
+  --focus-width: 2px;
+  --focus-offset: 2px;
+  --prose-width: 72ch;
+
+  --font-sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "JetBrains Mono", Consolas, "Liberation Mono", monospace;
+  --fs-body: 1rem;
+  --fs-small: 0.9375rem;
+  --fs-caption: 0.875rem;
+  --fs-h1: clamp(1.875rem, 1.4rem + 1.6vw, 2.5rem);
+  --fs-h2: 1.5rem;
+  --fs-h3: 1.2rem;
+}
+
+/* Телефон: шапка в две строки (меню, название, тема; под ними поиск) */
+@media (max-width: 599px) {
+  :root {
+    --topbar-height: 104px;
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --gutter: var(--gutter-wide);
+  }
+}
+
+/* Светлая тема (по умолчанию) */
+:root {
+  color-scheme: light;
+
+  --canvas: #F5F8F4;
+  --surface: #FFFFFF;
+  --surface-muted: #EDF3EB;
+  --text: #15211A;
+  --text-muted: #4A5B50;
+  --border: #DCE5DB;
+  --border-strong: #76897A;
+  --accent: #0B6A00;
+  --accent-fill: #0B6A00;
+  --on-accent: #FFFFFF;
+  --accent-soft: #E2F5DC;
+  --brand: #0F9200;
+  --success: #1A6B33;
+  --warning: #7A5200;
+  --danger: #A3261B;
+  --info: #0B5480;
+  --success-bg: #E3F3E6;
+  --warning-bg: #FCF3DA;
+  --danger-bg: #FBE6E3;
+  --info-bg: #E0F0FA;
+  --code-bg: #EEF3EC;
+  --code-border: #D3DDD0;
+  --code-text: #1B2B21;
+  --tok-keyword: #0B5FA5;
+  --tok-string: #1A6B33;
+  --tok-comment: #5B6E62;
+  --tok-number: #8A5200;
+  --tok-title: #6237B0;
+  --tok-type: #0B6A6A;
+  --shadow-popover: 0 12px 32px rgba(13, 20, 16, 0.14);
+  --scrim: rgba(13, 20, 16, 0.4);
+}
+
+/* Тёмная тема: системная (если data-theme не задан или не light) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --canvas: #0D1410;
+    --surface: #151F19;
+    --surface-muted: #1B2820;
+    --text: #E6F0E8;
+    --text-muted: #A3B5A8;
+    --border: #243229;
+    --border-strong: #5C7262;
+    --accent: #94F389;
+    --accent-fill: #94F389;
+    --on-accent: #0D1410;
+    --accent-soft: #1E3524;
+    --brand: #0F9200;
+    --success: #7BE095;
+    --warning: #F2C15C;
+    --danger: #FF9C92;
+    --info: #8FD0F5;
+    --success-bg: #14271A;
+    --warning-bg: #2E2410;
+    --danger-bg: #3A1A17;
+    --info-bg: #112A3A;
+    --code-bg: #09100C;
+    --code-border: #1C2A21;
+    --code-text: #DCE8DF;
+    --tok-keyword: #8FD0F5;
+    --tok-string: #94F389;
+    --tok-comment: #7F9488;
+    --tok-number: #F2C15C;
+    --tok-title: #C8A6FF;
+    --tok-type: #6FD6CF;
+    --shadow-popover: 0 12px 32px rgba(0, 0, 0, 0.5);
+    --scrim: rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Тёмная тема: выбрана вручную в переключателе */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --canvas: #0D1410;
+  --surface: #151F19;
+  --surface-muted: #1B2820;
+  --text: #E6F0E8;
+  --text-muted: #A3B5A8;
+  --border: #243229;
+  --border-strong: #5C7262;
+  --accent: #94F389;
+  --accent-fill: #94F389;
+  --on-accent: #0D1410;
+  --accent-soft: #1E3524;
+  --brand: #0F9200;
+  --success: #7BE095;
+  --warning: #F2C15C;
+  --danger: #FF9C92;
+  --info: #8FD0F5;
+  --success-bg: #14271A;
+  --warning-bg: #2E2410;
+  --danger-bg: #3A1A17;
+  --info-bg: #112A3A;
+  --code-bg: #09100C;
+  --code-border: #1C2A21;
+  --code-text: #DCE8DF;
+  --tok-keyword: #8FD0F5;
+  --tok-string: #94F389;
+  --tok-comment: #7F9488;
+  --tok-number: #F2C15C;
+  --tok-title: #C8A6FF;
+  --tok-type: #6FD6CF;
+  --shadow-popover: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --scrim: rgba(0, 0, 0, 0.6);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--canvas);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.65;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--accent);
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+:focus-visible {
+  outline: var(--focus-width) solid var(--accent);
+  outline-offset: var(--focus-offset);
+}
+
+/* Цвет и фон интерактивных элементов меняются за 120ms (DESIGN.md, раздел 8) */
+a,
+button,
+.pager-link,
+.search-result {
+  transition: color 120ms ease-out, background-color 120ms ease-out, border-color 120ms ease-out;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

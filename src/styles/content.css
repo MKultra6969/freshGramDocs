@@ -1,0 +1,455 @@
+/* Содержимое страницы: заголовок, колесо логотипа, бейджи, проза, таблицы, код, callout, баннер беты.
+   Колонка прозы не шире --prose-width; таблицы и блоки кода могут быть шире до полной ширины контента. */
+
+.beta-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--gutter);
+  background: var(--warning-bg);
+  color: var(--text);
+  font-size: var(--fs-small);
+  text-align: center;
+}
+
+.beta-icon {
+  flex: none;
+  color: var(--warning);
+}
+
+/* Колесо логотипа на главной и на странице ошибки: одна версия для обеих тем, у неё собственный фон */
+.hero-mark {
+  width: 96px;
+  height: 96px;
+  margin-bottom: var(--space-4);
+}
+
+.hero-mark-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.page {
+  min-width: 0;
+}
+
+.page-header {
+  max-width: var(--prose-width);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--border);
+}
+
+.breadcrumb {
+  margin-bottom: var(--space-3);
+  color: var(--text-muted);
+  font-size: var(--fs-caption);
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+}
+
+.breadcrumb li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Ссылка высотой 44px, как у пунктов меню: область нажатия; видимый текст 14px */
+.breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--hit-size);
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.page h1 {
+  margin-bottom: var(--space-2);
+  overflow-wrap: break-word;
+}
+
+.page-description {
+  margin-bottom: var(--space-4);
+  color: var(--text-muted);
+}
+
+/* Бейдж статуса: иконка и текст, цвет по статусу из DESIGN.md, раздел 3 */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 24px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.status-stable {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.status-experimental {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.status-wip {
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+/* Статус вне трёх известных: нейтральный контур вместо серого текста на сером фоне */
+.status-unknown {
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Проза */
+.markdown {
+  min-width: 0;
+}
+
+.markdown > * {
+  max-width: var(--prose-width);
+  margin: 0 0 var(--space-4);
+}
+
+.markdown > :first-child {
+  margin-top: 0;
+}
+
+.markdown > .code-block,
+.markdown > .table-wrap {
+  max-width: none;
+}
+
+.markdown ul,
+.markdown ol {
+  padding-left: var(--space-5);
+}
+
+.markdown ul {
+  list-style: disc;
+}
+
+.markdown ol {
+  list-style: decimal;
+}
+
+.markdown li + li {
+  margin-top: var(--space-1);
+}
+
+.markdown h1 {
+  margin: var(--space-6) 0 var(--space-3);
+  font-size: var(--fs-h1);
+  line-height: 1.2;
+}
+
+.markdown h2 {
+  margin: var(--space-7) 0 var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.markdown h3 {
+  margin: var(--space-6) 0 var(--space-3);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  margin: var(--space-5) 0 var(--space-2);
+  font-size: var(--fs-body);
+  font-weight: 600;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  scroll-margin-top: calc(var(--topbar-height) + var(--space-4));
+}
+
+.markdown a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* Значок внешней ссылки; у внутренних ссылок его нет */
+.external-icon {
+  display: inline-block;
+  margin-left: var(--space-1);
+  vertical-align: middle;
+}
+
+.markdown code {
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-inline);
+  background: var(--surface-muted);
+  font-family: var(--font-mono);
+  font-size: max(0.9em, var(--fs-caption));
+  overflow-wrap: anywhere;
+}
+
+.markdown hr {
+  margin: var(--space-6) 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+.markdown img {
+  max-width: 100%;
+  height: auto;
+}
+
+.markdown blockquote {
+  padding-left: var(--space-4);
+  border-left: var(--stripe-width) solid var(--border-strong);
+  color: var(--text-muted);
+}
+
+/* Callout: фон --surface, полоска слева цветом типа, иконка и подпись */
+.callout {
+  --callout-color: var(--info);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-left: var(--stripe-width) solid var(--callout-color);
+  border-radius: var(--radius-block);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.callout-note {
+  --callout-color: var(--info);
+}
+
+.callout-tip {
+  --callout-color: var(--success);
+}
+
+.callout-warning {
+  --callout-color: var(--warning);
+}
+
+.callout-caution {
+  --callout-color: var(--danger);
+}
+
+.callout-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+}
+
+.callout-icon {
+  flex: none;
+  color: var(--callout-color);
+}
+
+.callout p {
+  margin-bottom: var(--space-2);
+}
+
+.callout > :last-child {
+  margin-bottom: 0;
+}
+
+/* Таблицы: прокрутка внутри контейнера, колонки не уже 128px */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-block);
+}
+
+.table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-small);
+}
+
+.table-wrap th,
+.table-wrap td {
+  min-width: 8rem;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.table-wrap th {
+  background: var(--surface-muted);
+  font-weight: 600;
+}
+
+.table-wrap tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Блок кода: шапка 44px с языком и копированием, тело с горизонтальной прокруткой */
+.code-block {
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius-block);
+  background: var(--code-bg);
+}
+
+.code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  height: var(--hit-size);
+  padding: 0 var(--space-2) 0 var(--space-4);
+  border-bottom: 1px solid var(--code-border);
+  border-radius: var(--radius-block) var(--radius-block) 0 0;
+}
+
+.code-lang {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copy-button {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--control-size);
+  margin-left: auto;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--text);
+  font-size: var(--fs-caption);
+  cursor: pointer;
+}
+
+/* Область нажатия 44×44 при видимых 40px */
+.copy-button::after {
+  content: "";
+  position: absolute;
+  inset: calc(var(--hit-extend) * -1);
+}
+
+.copy-button:hover {
+  background: var(--surface-muted);
+}
+
+.code-block pre {
+  margin: 0;
+  padding: var(--space-4);
+  overflow-x: auto;
+  color: var(--code-text);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  line-height: 1.6;
+  tab-size: 4;
+}
+
+.code-block pre code {
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  font-size: inherit;
+  overflow-wrap: normal;
+}
+
+@media (max-width: 599px) {
+  .copy-label {
+    display: none;
+  }
+}
+
+/* Подсветка синтаксиса: цвета только из токенов tok-* */
+.hljs {
+  color: var(--code-text);
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal {
+  color: var(--tok-keyword);
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition {
+  color: var(--tok-string);
+}
+
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet {
+  color: var(--tok-number);
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion {
+  color: var(--tok-comment);
+  font-style: italic;
+}
+
+.hljs-title,
+.hljs-function .hljs-title,
+.hljs-section,
+.hljs-name {
+  color: var(--tok-title);
+}
+
+.hljs-type,
+.hljs-class .hljs-title,
+.hljs-built_in,
+.hljs-params {
+  color: var(--tok-type);
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: 700;
+}
+
+.not-found {
+  padding-top: var(--space-2);
+}

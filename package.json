@@ -1,0 +1,29 @@
+{
+  "name": "freshgram-plugin-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/build-llms.mjs",
+    "dev": "vite --host 0.0.0.0",
+    "prebuild": "node scripts/build-llms.mjs",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "sync-version": "node scripts/sync-version.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "^1.63.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-markdown": "^10.1.0",
+    "rehype-highlight": "^7.0.2",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
+  }
+}
